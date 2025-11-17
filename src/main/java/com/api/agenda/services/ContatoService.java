@@ -1,5 +1,6 @@
 package com.api.agenda.services;
 
+import com.api.agenda.dtos.ContatoDTO;
 import com.api.agenda.dtos.UsuarioDTO;
 import com.api.agenda.entities.Contato;
 import com.api.agenda.repositories.ContatoRepository;
@@ -14,14 +15,13 @@ import java.util.List;
 public class ContatoService {
     private ContatoRepository contatoRepository;
 
-    public Contato criarContato(Contato dadosContato) {
+    public Contato criarContato(ContatoDTO dadosContato) {
         var contato = new Contato(dadosContato);
-        contatoRepository.save(contato);
-        return contato;
+        return contatoRepository.save(contato);
     }
 
     public List<Contato> listarTodos(){
-        return contatoRepository.findAll().stream().map(Contato::new).toList();
+        return contatoRepository.findAll();
     }
 
 }

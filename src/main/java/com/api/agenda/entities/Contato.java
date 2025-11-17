@@ -1,5 +1,6 @@
 package com.api.agenda.entities;
 
+import com.api.agenda.dtos.ContatoDTO;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -36,6 +37,12 @@ public class Contato {
         this.dataCriacao = contato.dataCriacao;
         this.usuario = contato.usuario;
         this.telefones = contato.telefones;
+    }
+
+    public Contato(ContatoDTO contatoDTO) {
+        this.nome = contatoDTO.nome();
+        this.email = contatoDTO.email();
+        this.telefones = contatoDTO.telefones();
     }
 
     public Contato(String nome, String sobrenome, String email) {

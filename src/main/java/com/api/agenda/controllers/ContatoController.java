@@ -1,5 +1,6 @@
 package com.api.agenda.controllers;
 
+import com.api.agenda.dtos.ContatoDTO;
 import com.api.agenda.dtos.LoginDTO;
 import com.api.agenda.dtos.TokenDTO;
 import com.api.agenda.dtos.UsuarioDTO;
@@ -23,14 +24,14 @@ public class ContatoController {
 	private ContatoService service;
 	private JWTokenService tokenService;
 
-
-	public ContatoController(AuthenticationManager manager, JWTokenService tokenService) {
+	public ContatoController(AuthenticationManager manager, JWTokenService tokenService, ContatoService service) {
 		this.manager = manager;
 		this.tokenService = tokenService;
+		this.service = service;
 	}
 
 	@PostMapping
-	public ResponseEntity criarContato(@RequestBody Contato dadosContato) {
+	public ResponseEntity criarContato(@RequestBody ContatoDTO dadosContato) {
 		var contato = service.criarContato(dadosContato);
 		return ResponseEntity.ok(contato);
 	}
