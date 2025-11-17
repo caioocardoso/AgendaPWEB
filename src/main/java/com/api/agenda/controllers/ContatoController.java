@@ -12,6 +12,8 @@ import com.api.agenda.services.UsuarioService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,8 +33,8 @@ public class ContatoController {
 	}
 
 	@PostMapping
-	public ResponseEntity criarContato(@RequestBody ContatoDTO dadosContato) {
-		var contato = service.criarContato(dadosContato);
+	public ResponseEntity criarContato(@RequestBody ContatoDTO dadosContato, @AuthenticationPrincipal UserDetails userDetails) {
+		var contato = service.criarContato(dadosContato, userDetails.getUsername());
 		return ResponseEntity.ok(contato);
 	}
 

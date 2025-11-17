@@ -56,4 +56,12 @@ public class Contato {
         telefones.add(telefone);
         telefone.setContato(this);
     }
+
+    public List<Telefone> getTelefones() {
+        return telefones;
+    }
+
+    public void setUsuario(Usuario usuario){
+        this.usuario = usuario;
+    }
 }
