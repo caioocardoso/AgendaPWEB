@@ -33,8 +33,8 @@ public class ContatoController {
 	}
 
 	@PostMapping
-	public ResponseEntity criarContato(@RequestBody ContatoDTO dadosContato, @AuthenticationPrincipal UserDetails userDetails) {
-		var contato = service.criarContato(dadosContato, userDetails.getUsername());
+	public ResponseEntity criarContato(@RequestBody ContatoDTO dadosContato) {
+		Contato contato = service.criarContato(dadosContato);
 		return ResponseEntity.ok(contato);
 	}
 

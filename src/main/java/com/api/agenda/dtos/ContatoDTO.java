@@ -4,5 +4,5 @@ import com.api.agenda.entities.Telefone;
 
 import java.util.List;
 
-public record ContatoDTO(String nome, String email, List<Telefone> telefones) {
+public record ContatoDTO(String nome, String email, List<TelefoneDTO> telefones, UsuarioDTO dadosUsuario) {
 }

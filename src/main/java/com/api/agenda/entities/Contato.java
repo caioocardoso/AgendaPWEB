@@ -1,6 +1,8 @@
 package com.api.agenda.entities;
 
 import com.api.agenda.dtos.ContatoDTO;
+import com.api.agenda.dtos.TelefoneDTO;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -25,6 +27,7 @@ public class Contato {
     private Usuario usuario;
 
     @OneToMany(mappedBy = "contato", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Telefone> telefones = new ArrayList<>();
 
     public Contato() {}
@@ -42,7 +45,10 @@ public class Contato {
     public Contato(ContatoDTO contatoDTO) {
         this.nome = contatoDTO.nome();
         this.email = contatoDTO.email();
-        this.telefones = contatoDTO.telefones();
+        for (TelefoneDTO telefoneDTO : contatoDTO.telefones()) {
+            Telefone telefone = new Telefone(telefoneDTO);
+            this.telefones.add(telefone);
+        }
     }
 
     public Contato(String nome, String sobrenome, String email) {

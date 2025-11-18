@@ -23,12 +23,12 @@ public class ContatoService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public Contato criarContato(ContatoDTO dadosContato, String loginUsuario) {
-        Usuario usuario = (Usuario) usuarioRepository.findByUsername(loginUsuario);
+    public Contato criarContato(ContatoDTO dadosContato) {
+        Usuario usuario = (Usuario) usuarioRepository.findByUsername(dadosContato.dadosUsuario().username());
         if (usuario == null)
             throw new IllegalArgumentException("Usuário logado não encontrado.");
 
-        var contato = new Contato(dadosContato);
+        Contato contato = new Contato(dadosContato);
         contato.setUsuario(usuario);
 
         if (contato.getTelefones() != null && !contato.getTelefones().isEmpty()) {

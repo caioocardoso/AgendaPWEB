@@ -45,7 +45,7 @@ public class UsuarioController {
 	
 	@PostMapping("/register")
 	public ResponseEntity<UsuarioDTO> cadastrarUsuario(@RequestBody LoginDTO dadosLogin) {
-		var usuario=service.cadastrarUsuario(dadosLogin);
+		var usuario = service.cadastrarUsuario(dadosLogin);
 		return ResponseEntity.ok(usuario);
 	}
 	
